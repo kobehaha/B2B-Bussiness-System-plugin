@@ -1,0 +1,299 @@
+Tue May  2 16:31:59 2017 - [info] Checking replication filtering settings..
+Tue May  2 16:31:59 2017 - [info]  binlog_do_db= , binlog_ignore_db= mysql
+Tue May  2 16:31:59 2017 - [info]  Replication filtering check ok.
+Tue May  2 16:31:59 2017 - [info] Starting SSH connection tests..
+Tue May  2 16:32:01 2017 - [info] All SSH connection tests passed successfully.
+Tue May  2 16:32:01 2017 - [info] Checking MHA Node version..
+Tue May  2 16:32:04 2017 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.
+Tue May  2 16:32:04 2017 - [info] Reading application default configurations from app1.cnf..
+Tue May  2 16:32:04 2017 - [info] Reading server configurations from app1.cnf..
+Tue May  2 16:32:04 2017 - [info] MHA::MasterMonitor version 0.53.
+Tue May  2 16:32:05 2017 - [warning] /usr/local/mha/app1.master_status.health already exists. You might have killed manager with SIGKILL(-9), may run two or more monitoring process for the same application, or use the same working directory. Check for details, and consider setting --workdir separately.
+Tue May  2 16:32:05 2017 - [info] Dead Servers:
+Tue May  2 16:32:05 2017 - [info] Alive Servers:
+Tue May  2 16:32:05 2017 - [info]   host1(10.211.55.5:3306)
+Tue May  2 16:32:05 2017 - [info]   host3(10.211.55.7:3306)
+Tue May  2 16:32:05 2017 - [info]   host4(10.211.55.8:3306)
+Tue May  2 16:32:05 2017 - [info] Alive Slaves:
+Tue May  2 16:32:05 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:05 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:05 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:05 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:05 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:05 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:05 2017 - [info] Current Alive Master: host1(10.211.55.5:3306)
+Tue May  2 16:32:05 2017 - [info] Checking slave configurations..
+Tue May  2 16:32:05 2017 - [info]  read_only=1 is not set on slave host3(10.211.55.7:3306).
+Tue May  2 16:32:05 2017 - [warning]  relay_log_purge=0 is not set on slave host3(10.211.55.7:3306).
+Tue May  2 16:32:05 2017 - [info]  read_only=1 is not set on slave host4(10.211.55.8:3306).
+Tue May  2 16:32:05 2017 - [warning]  relay_log_purge=0 is not set on slave host4(10.211.55.8:3306).
+Tue May  2 16:32:05 2017 - [info] Checking replication filtering settings..
+Tue May  2 16:32:05 2017 - [info]  binlog_do_db= , binlog_ignore_db= mysql
+Tue May  2 16:32:05 2017 - [info]  Replication filtering check ok.
+Tue May  2 16:32:05 2017 - [info] Starting SSH connection tests..
+Tue May  2 16:32:07 2017 - [info] All SSH connection tests passed successfully.
+Tue May  2 16:32:07 2017 - [info] Checking MHA Node version..
+Tue May  2 16:32:07 2017 - [info]  Version check ok.
+Tue May  2 16:32:07 2017 - [info] Checking SSH publickey authentication settings on the current master..
+Tue May  2 16:32:07 2017 - [info] HealthCheck: SSH to host1 is reachable.
+Tue May  2 16:32:08 2017 - [info] Master MHA Node version is 0.53.
+Tue May  2 16:32:08 2017 - [info] Checking recovery script configurations on the current master..
+Tue May  2 16:32:08 2017 - [info]   Executing command: save_binary_logs --command=test --start_pos=4 --binlog_dir=/usr/local/mysql/mysql/data/ --output_file=/var/tmp/save_binary_logs_test --manager_version=0.53 --start_file=mysql-master-bin.000002
+Tue May  2 16:32:08 2017 - [info]   Connecting to root@host1(host1)..
+  Creating /var/tmp if not exists..    ok.
+  Checking output directory is accessible or not..
+   ok.
+  Binlog found at /usr/local/mysql/mysql/data/, up to mysql-master-bin.000002
+Tue May  2 16:32:08 2017 - [info] Master setting check done.
+Tue May  2 16:32:08 2017 - [info] Checking SSH publickey authentication and checking recovery script configurations on all alive slave servers..
+Tue May  2 16:32:08 2017 - [info]   Executing command : apply_diff_relay_logs --command=test --slave_user=root --slave_host=host3 --slave_ip=10.211.55.7 --slave_port=3306 --workdir=/var/tmp --target_version=5.6.20-log --manager_version=0.53 --relay_log_info=/usr/local/mysql/mysql/data/relay-log.info  --relay_dir=/usr/local/mysql/mysql/data/  --slave_pass=xxx
+Tue May  2 16:32:08 2017 - [info]   Connecting to root@10.211.55.7(host3:22)..
+  Checking slave recovery environment settings..
+    Opening /usr/local/mysql/mysql/data/relay-log.info ... ok.
+    Relay log found at /usr/local/mysql/mysql/data, up to host3-relay-bin.000006
+    Temporary relay log file is /usr/local/mysql/mysql/data/host3-relay-bin.000006
+    Testing mysql connection and privileges.. done.
+    Testing mysqlbinlog output.. done.
+    Cleaning up test file(s).. done.
+Tue May  2 16:32:08 2017 - [info]   Executing command : apply_diff_relay_logs --command=test --slave_user=root --slave_host=host4 --slave_ip=10.211.55.8 --slave_port=3306 --workdir=/var/tmp --target_version=5.6.20-log --manager_version=0.53 --relay_log_info=/usr/local/mysql/mysql/data/relay-log.info  --relay_dir=/usr/local/mysql/mysql/data/  --slave_pass=xxx
+Tue May  2 16:32:08 2017 - [info]   Connecting to root@10.211.55.8(host4:22)..
+  Checking slave recovery environment settings..
+    Opening /usr/local/mysql/mysql/data/relay-log.info ... ok.
+    Relay log found at /usr/local/mysql/mysql/data, up to host4-relay-bin.000006
+    Temporary relay log file is /usr/local/mysql/mysql/data/host4-relay-bin.000006
+    Testing mysql connection and privileges.. done.
+    Testing mysqlbinlog output.. done.
+    Cleaning up test file(s).. done.
+Tue May  2 16:32:09 2017 - [info] Slaves settings check done.
+Tue May  2 16:32:09 2017 - [info]
+host1 (current master)
+ +--host3
+ +--host4
+
+Tue May  2 16:32:09 2017 - [info] Checking master_ip_failover_script status:
+Tue May  2 16:32:09 2017 - [info]   /usr/local/mha/master_ip_failover --command=status --ssh_user=root --orig_master_host=host1 --orig_master_ip=10.211.55.5 --orig_master_port=3306
+
+
+IN SCRIPT TEST====/sbin/ifconfig eth4:1 down==/sbin/ifconfig eth4:1 10.211.55.111/24===
+
+Checking the Status of the script.. OK
+Tue May  2 16:32:09 2017 - [info]  OK.
+Tue May  2 16:32:09 2017 - [warning] shutdown_script is not defined.
+Tue May  2 16:32:09 2017 - [info] Set master ping interval 1 seconds.
+Tue May  2 16:32:09 2017 - [warning] secondary_check_script is not defined. It is highly recommended setting it to check master reachability from two or more routes.
+Tue May  2 16:32:09 2017 - [info] Starting ping health check on host1(10.211.55.5:3306)..
+Tue May  2 16:32:09 2017 - [info] Ping(SELECT) succeeded, waiting until MySQL doesn't respond..
+Tue May  2 16:32:24 2017 - [warning] Got error on MySQL select ping: 2006 (MySQL server has gone away)
+Tue May  2 16:32:24 2017 - [info] Executing SSH check script: save_binary_logs --command=test --start_pos=4 --binlog_dir=/usr/local/mysql/mysql/data/ --output_file=/var/tmp/save_binary_logs_test --manager_version=0.53 --binlog_prefix=mysql-master-bin
+  Creating /var/tmp if not exists..    ok.
+  Checking output directory is accessible or not..
+   ok.
+  Binlog found at /usr/local/mysql/mysql/data/, up to mysql-master-bin.000002
+Tue May  2 16:32:24 2017 - [info] HealthCheck: SSH to host1 is reachable.
+Tue May  2 16:32:25 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Tue May  2 16:32:25 2017 - [warning] Connection failed 1 time(s)..
+Tue May  2 16:32:26 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Tue May  2 16:32:26 2017 - [warning] Connection failed 2 time(s)..
+Tue May  2 16:32:27 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Tue May  2 16:32:27 2017 - [warning] Connection failed 3 time(s)..
+Tue May  2 16:32:27 2017 - [warning] Master is not reachable from health checker!
+Tue May  2 16:32:27 2017 - [warning] Master host1(10.211.55.5:3306) is not reachable!
+Tue May  2 16:32:27 2017 - [warning] SSH is reachable.
+Tue May  2 16:32:27 2017 - [info] Connecting to a master server failed. Reading configuration file /etc/masterha_default.cnf and app1.cnf again, and trying to connect to all servers to check server status..
+Tue May  2 16:32:27 2017 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.
+Tue May  2 16:32:27 2017 - [info] Reading application default configurations from app1.cnf..
+Tue May  2 16:32:27 2017 - [info] Reading server configurations from app1.cnf..
+Tue May  2 16:32:27 2017 - [info] Dead Servers:
+Tue May  2 16:32:27 2017 - [info]   host1(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info] Alive Servers:
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)
+Tue May  2 16:32:27 2017 - [info] Alive Slaves:
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info] Checking slave configurations..
+Tue May  2 16:32:27 2017 - [info]  read_only=1 is not set on slave host3(10.211.55.7:3306).
+Tue May  2 16:32:27 2017 - [warning]  relay_log_purge=0 is not set on slave host3(10.211.55.7:3306).
+Tue May  2 16:32:27 2017 - [info]  read_only=1 is not set on slave host4(10.211.55.8:3306).
+Tue May  2 16:32:27 2017 - [warning]  relay_log_purge=0 is not set on slave host4(10.211.55.8:3306).
+Tue May  2 16:32:27 2017 - [info] Checking replication filtering settings..
+Tue May  2 16:32:27 2017 - [info]  Replication filtering check ok.
+Tue May  2 16:32:27 2017 - [info] Master is down!
+Tue May  2 16:32:27 2017 - [info] Terminating monitoring script.
+Tue May  2 16:32:27 2017 - [info] Got exit code 20 (Master dead).
+Tue May  2 16:32:27 2017 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.
+Tue May  2 16:32:27 2017 - [info] Reading application default configurations from app1.cnf..
+Tue May  2 16:32:27 2017 - [info] Reading server configurations from app1.cnf..
+Tue May  2 16:32:27 2017 - [info] MHA::MasterFailover version 0.53.
+Tue May  2 16:32:27 2017 - [info] Starting master failover.
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] * Phase 1: Configuration Check Phase..
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] Dead Servers:
+Tue May  2 16:32:27 2017 - [info]   host1(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info] Checking master reachability via mysql(double check)..
+Tue May  2 16:32:27 2017 - [info]  ok.
+Tue May  2 16:32:27 2017 - [info] Alive Servers:
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)
+Tue May  2 16:32:27 2017 - [info] Alive Slaves:
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info] ** Phase 1: Configuration Check Phase completed.
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] * Phase 2: Dead Master Shutdown Phase..
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] Forcing shutdown so that applications never connect to the current master..
+Tue May  2 16:32:27 2017 - [info] Executing master IP deactivatation script:
+Tue May  2 16:32:27 2017 - [info]   /usr/local/mha/master_ip_failover --orig_master_host=host1 --orig_master_ip=10.211.55.5 --orig_master_port=3306 --command=stopssh --ssh_user=root
+
+
+IN SCRIPT TEST====/sbin/ifconfig eth4:1 down==/sbin/ifconfig eth4:1 10.211.55.111/24===
+
+Disabling the VIP on old master: host1
+SIOCSIFFLAGS: Cannot assign requested address
+Tue May  2 16:32:27 2017 - [info]  done.
+Tue May  2 16:32:27 2017 - [warning] shutdown_script is not set. Skipping explicit shutting down of the dead master.
+Tue May  2 16:32:27 2017 - [info] * Phase 2: Dead Master Shutdown Phase completed.
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] * Phase 3: Master Recovery Phase..
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] * Phase 3.1: Getting Latest Slaves Phase..
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] The latest binary log file/position on all slaves is mysql-master-bin.000002:120
+Tue May  2 16:32:27 2017 - [info] Latest slaves (Slaves that received relay log files to the latest):
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info] The oldest binary log file/position on all slaves is mysql-master-bin.000002:120
+Tue May  2 16:32:27 2017 - [info] Oldest slaves:
+Tue May  2 16:32:27 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:27 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:27 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:27 2017 - [info] * Phase 3.2: Saving Dead Master's Binlog Phase..
+Tue May  2 16:32:27 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] Fetching dead master's binary logs..
+Tue May  2 16:32:28 2017 - [info] Executing command on the dead master host1(10.211.55.5:3306): save_binary_logs --command=save --start_file=mysql-master-bin.000002  --start_pos=120 --binlog_dir=/usr/local/mysql/mysql/data/ --output_file=/var/tmp/saved_master_binlog_from_host1_3306_20170502163227.binlog --handle_raw_binlog=1 --disable_log_bin=0 --manager_version=0.53
+  Creating /var/tmp if not exists..    ok.
+ Concat binary/relay logs from mysql-master-bin.000002 pos 120 to mysql-master-bin.000002 EOF into /var/tmp/saved_master_binlog_from_host1_3306_20170502163227.binlog ..
+  Dumping binlog format description event, from position 0 to 120.. ok.
+  No need to dump effective binlog data from /usr/local/mysql/mysql/data//mysql-master-bin.000002 (pos starts 120, filesize 120). Skipping.
+ /var/tmp/saved_master_binlog_from_host1_3306_20170502163227.binlog has no effective data events.
+Event not exists.
+Tue May  2 16:32:28 2017 - [info] Additional events were not found from the orig master. No need to save.
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 3.3: Determining New Master Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] Finding the latest slave that has all relay logs for recovering other slaves..
+Tue May  2 16:32:28 2017 - [info] All slaves received relay logs to the same position. No need to resync each other.
+Tue May  2 16:32:28 2017 - [info] Searching new master from slaves..
+Tue May  2 16:32:28 2017 - [info]  Candidate masters from the configuration file:
+Tue May  2 16:32:28 2017 - [info]   host3(10.211.55.7:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:28 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:28 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:28 2017 - [info]   host4(10.211.55.8:3306)  Version=5.6.20-log (oldest major version between slaves) log-bin:enabled
+Tue May  2 16:32:28 2017 - [info]     Replicating from 10.211.55.5(10.211.55.5:3306)
+Tue May  2 16:32:28 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Tue May  2 16:32:28 2017 - [info]  Non-candidate masters:
+Tue May  2 16:32:28 2017 - [info]  Searching from candidate_master slaves which have received the latest relay log events..
+Tue May  2 16:32:28 2017 - [info] New master is host3(10.211.55.7:3306)
+Tue May  2 16:32:28 2017 - [info] Starting master failover..
+Tue May  2 16:32:28 2017 - [info]
+From:
+host1 (current master)
+ +--host3
+ +--host4
+
+To:
+host3 (new master)
+ +--host4
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 3.3: New Master Diff Log Generation Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info]  This server has all relay logs. No need to generate diff files from the latest slave.
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 3.4: Master Log Apply Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] *NOTICE: If any error happens from this phase, manual recovery is needed.
+Tue May  2 16:32:28 2017 - [info] Starting recovery on host3(10.211.55.7:3306)..
+Tue May  2 16:32:28 2017 - [info]  This server has all relay logs. Waiting all logs to be applied..
+Tue May  2 16:32:28 2017 - [info]   done.
+Tue May  2 16:32:28 2017 - [info]  All relay logs were successfully applied.
+Tue May  2 16:32:28 2017 - [info] Getting new master's binlog name and position..
+Tue May  2 16:32:28 2017 - [info]  mysql-slave-bin.000007:120
+Tue May  2 16:32:28 2017 - [info]  All other slaves should start replication from here. Statement should be: CHANGE MASTER TO MASTER_HOST='host3 or 10.211.55.7', MASTER_PORT=3306, MASTER_LOG_FILE='mysql-slave-bin.000007', MASTER_LOG_POS=120, MASTER_USER='repl', MASTER_PASSWORD='xxx';
+Tue May  2 16:32:28 2017 - [info] Executing master IP activate script:
+Tue May  2 16:32:28 2017 - [info]   /usr/local/mha/master_ip_failover --command=start --ssh_user=root --orig_master_host=host1 --orig_master_ip=10.211.55.5 --orig_master_port=3306 --new_master_host=host3 --new_master_ip=10.211.55.7 --new_master_port=3306
+
+
+IN SCRIPT TEST====/sbin/ifconfig eth4:1 down==/sbin/ifconfig eth4:1 10.211.55.111/24===
+
+Enabling the VIP - 10.211.55.111/24 on the new master - host3
+ ------start new  vip sucess-------Tue May  2 16:32:28 2017 - [info]  OK.
+Tue May  2 16:32:28 2017 - [info] ** Finished master recovery successfully.
+Tue May  2 16:32:28 2017 - [info] * Phase 3: Master Recovery Phase completed.
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 4: Slaves Recovery Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 4.1: Starting Parallel Slave Diff Log Generation Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] -- Slave diff file generation on host host4(10.211.55.8:3306) started, pid: 22752. Check tmp log /usr/local/mha/host4_3306_20170502163227.log if it takes time..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] Log messages from host4 ...
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info]  This server has all relay logs. No need to generate diff files from the latest slave.
+Tue May  2 16:32:28 2017 - [info] End of log messages from host4.
+Tue May  2 16:32:28 2017 - [info] -- host4(10.211.55.8:3306) has the latest relay log events.
+Tue May  2 16:32:28 2017 - [info] Generating relay diff files from the latest slave succeeded.
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] * Phase 4.2: Starting Parallel Slave Log Apply Phase..
+Tue May  2 16:32:28 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] -- Slave recovery on host host4(10.211.55.8:3306) started, pid: 22754. Check tmp log /usr/local/mha/host4_3306_20170502163227.log if it takes time..
+Tue May  2 16:32:39 2017 - [error][/usr/local/share/perl5/MHA/Server.pm, ln744] Slave could not be started on host4(10.211.55.8:3306)! Check slave status.
+Tue May  2 16:32:39 2017 - [info]
+Tue May  2 16:32:39 2017 - [info] Log messages from host4 ...
+Tue May  2 16:32:39 2017 - [info]
+Tue May  2 16:32:28 2017 - [info] Starting recovery on host4(10.211.55.8:3306)..
+Tue May  2 16:32:28 2017 - [info]  This server has all relay logs. Waiting all logs to be applied..
+Tue May  2 16:32:28 2017 - [info]   done.
+Tue May  2 16:32:28 2017 - [info]  All relay logs were successfully applied.
+Tue May  2 16:32:28 2017 - [info]  Resetting slave host4(10.211.55.8:3306) and starting replication from the new master host3(10.211.55.7:3306)..
+Tue May  2 16:32:28 2017 - [info]  Executed CHANGE MASTER.
+Tue May  2 16:32:39 2017 - [error][/usr/local/share/perl5/MHA/Server.pm, ln817] Starting slave IO/SQL thread on host4(10.211.55.8:3306) failed!
+Tue May  2 16:32:39 2017 - [info] End of log messages from host4.
+Tue May  2 16:32:39 2017 - [error][/usr/local/share/perl5/MHA/MasterFailover.pm, ln1537] Master failover to host3(10.211.55.7:3306) done, but recovery on slave partially failed.
+Tue May  2 16:32:39 2017 - [info]
+
+----- Failover Report -----
+
+app1: MySQL Master failover host1 to host3
+
+Master host1 is down!
+
+Check MHA Manager logs at host5:/usr/local/mha/logs/manager.log for details.
+
+Started automated(non-interactive) failover.
+Invalidated master IP address on host1.
+The latest slave host3(10.211.55.7:3306) has all relay logs for recovery.
+Selected host3 as a new master.
+host3: OK: Applying all logs succeeded.
+host3: OK: Activated master IP address.
+host4: This host has the latest relay log events.
+Generating relay diff files from the latest slave succeeded.
+host4: WARN: Applying all logs succeeded. But starting slave failed.
+Master failover to host3(10.211.55.7:3306) done, but recovery on slave partially failed.
