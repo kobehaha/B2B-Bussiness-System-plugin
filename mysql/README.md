@@ -91,6 +91,7 @@ mysql 高可用集群机构方案方案中的一种
  	
  				  
 * 启动mha manager 
+
  			
  
  * 观察lvs+keepalived代理状态
