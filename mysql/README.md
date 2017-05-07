@@ -16,7 +16,7 @@ mysql 高可用集群机构方案方案中的一种
 		* [slave停止服务](#master停止服务)
 		* [keepalived停止服务](#keepalived停止服务)
 	* [关键步骤](#关键步骤)
-	* [配置文件](#配置文件)
+	* [配置文件与相关脚本](#配置文件与相关脚本)
 	* [相关下载](#相关下载)
 	
 概要介绍
@@ -45,12 +45,13 @@ mysql 高可用集群机构方案方案中的一种
 架构图
 =================
 
+
+### 正常
+
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/normal.png)
 
 
-    	
-    	
-    	
+    
 故障切换介绍
 =================
 
@@ -58,12 +59,33 @@ mysql 高可用集群机构方案方案中的一种
 
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/master_down.png)
 
+```
+    master 宕机 mha--> 
+                    1 从alived 候选slave中选出最新数据的当做master
+                    2 把old_master 的同步数据同步到新的master
+                    3 把新master 数据同步到旧的slave 然后把旧的slave的master 切换为新master,开始同步
+                    4 master_ip_failover脚本自动切换绑定的vip,old ip 解绑 新的绑定上去
+                      
+                       
+```
+
 
 ###slave 宕机
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/slave_down.png)
 
+```
+
+    slave 宕机 ---> 
+                1 keepalived 检测脚本tcp 检测和自定义检测都会检测到不能服务
+                2 从代理列表中移除
+```
 ###keepalived宕机
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/keepalived_down.png)
+
+```
+    keepalived 宕机 -->
+                1 切换到备keepalived 代理也切换
+```
 	
 
 关键步骤
@@ -106,9 +128,10 @@ mysql 高可用集群机构方案方案中的一种
  	
  				  
 * 启动mha manager 
-
+    
+            masterha_manager --conf=/usr/local/mha/app1.cnf >> /usr/local/mha/logs/manager.log < /dev/null 2 &>1 &
  			
- 
+
  * 观察lvs+keepalived代理状态
  
 			watch -n1 "ipvsadm -Ln"
@@ -117,16 +140,33 @@ mysql 高可用集群机构方案方案中的一种
  
  			/etc/keepalived/check_slave.pl 10.211.55.6 3306
  			
- 			echo $? 检测是否正确 0 同步成功 1 失败
+ 			 echo $? 检测是否正确 0 同步成功 1 失败
  		
  			
  * mha ip failover检测脚本  
 
  			/usr/local/mha/master_ip_failover
+ 			
  
- 			更改脚本vip 需要配合网卡测试			
+ 			 更改脚本vip 需要配合网卡测试			
 
 
+
+配置文件与相关脚本
+=================
+
+```
+
+    config 目录下
+        
+        keepalived_master    ---> keepalied master配置文件 
+        keepalived_back      ---> keepalive back 配置文件
+        master_ip_failover   ---> mha vip 切换脚本
+        check_slave.pl       ---> keepalived 自定义检测脚本
+        app1.cnf             ---> mha配置文件
+        
+    
+```
 
 相关下载
 =================
