@@ -45,7 +45,7 @@ mysql 高可用集群机构方案方案中的一种
 架构图
 =================
 	
-	
+    	
 故障切换介绍
 =================
 	
@@ -115,7 +115,7 @@ mysql 高可用集群机构方案方案中的一种
 相关下载
 =================
 
->  rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+>http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
   
 > https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mysql-master-ha/mha4mysql-node-0.53.tar.gz
   
