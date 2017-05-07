@@ -44,7 +44,7 @@ mysql 高可用集群机构方案方案中的一种
 	
 架构图
 =================
-	
+	![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/normal.png)
     	
 故障切换介绍
 =================
