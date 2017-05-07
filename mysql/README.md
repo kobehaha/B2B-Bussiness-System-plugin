@@ -19,6 +19,7 @@ mysql 高可用集群机构方案方案中的一种
 	* [配置文件与相关脚本](#配置文件与相关脚本)
 	* [相关下载](#相关下载)
 	
+	
 概要介绍
 =================
 
@@ -55,7 +56,7 @@ mysql 高可用集群机构方案方案中的一种
 故障切换介绍
 =================
 
-###master 宕机
+master停止服务
 
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/master_down.png)
 
@@ -70,7 +71,7 @@ mysql 高可用集群机构方案方案中的一种
 ```
 
 
-###slave 宕机
+slave停止服务
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/slave_down.png)
 
 ```
@@ -79,7 +80,7 @@ mysql 高可用集群机构方案方案中的一种
                 1 keepalived 检测脚本tcp 检测和自定义检测都会检测到不能服务
                 2 从代理列表中移除
 ```
-###keepalived宕机
+keepalived停止服务
 ![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/keepalived_down.png)
 
 ```
@@ -177,6 +178,7 @@ mysql 高可用集群机构方案方案中的一种
   
  > https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mysql-master-ha/mha4mysql-manager-0.53.tar.gz
   
+> http://www.keepalived.org/software/keepalived-1.2.24.tar.gz
 
   
 	
