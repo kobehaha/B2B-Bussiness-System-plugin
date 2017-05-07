@@ -44,11 +44,24 @@ mysql 高可用集群机构方案方案中的一种
 	
 架构图
 =================
-	![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/normal.png)
+
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/normal.png)
+
+
     	
 故障切换介绍
 =================
-	
+
+###master 宕机
+
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/master_down.png)
+
+
+###slave 宕机
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/slave_down.png)
+
+###keepalived宕机
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/keepalived_down.png)
 	
 
 关键步骤
