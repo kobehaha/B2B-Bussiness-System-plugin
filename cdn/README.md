@@ -143,7 +143,56 @@
 
 		Name:	www.cdn.com
 		Address: 10.211.55.6
+
 	
+	
+配置文件与相关脚本
+==========
+    
+   > 配置温江都在config文件夹下简单可以区分出差别
+    
+        ├── apache1.conf_host2
+        ├── apache2.conf_host2
+        ├── bind_cdn.com.zone_host5
+        ├── bind_name.conf_host5
+        ├── lvs_host4
+        ├── nginx.conf_main_host2
+        ├── nginx.conf_www.cdn.com_host2
+        ├── squid1.conf_host1
+        ├── squid2.conf_host1
+        ├── squid3.conf_host3
+        └── squid4.conf_host3
+
+    
+   > 没有针对每个服务都做脚本启动
+   
+        apache1 --->  /usr/local/apache/bin/apachectl -c 
+        /usr/local/apache/conf/httpd.conf
+        
+        apache2 ---> /usr/local/apache2/bin/apachectl -c 
+        /usr/local/apache2/conf/httpd.conf
+        
+        squid1 ---->  /usr/local/squid/sbin/squid -f 
+        /usr/local/squid/etc/squid.conf
+        
+        squid2 ----> /usr/local/squid2/sbin/squid -f
+         /usr/local/squid2/etc/squid.conf
+        
+        squid3 ----> /usr/local/squid/sbin/squid -f 
+        /usr/local/squid/etc/squid.conf
+        
+        squid4 ----> /usr/local/squid2/sbin/squid -f 
+        /usr/local/squid4/etc/squid.conf
+        
+        bind   ----> /usr/local/bind/sbin/named
+        
+        nginx -----> /etc/init.d/nginx
+        
+        lvs   -----> 参考上面
+        
+        
+
+
 思考
 ==========
 
