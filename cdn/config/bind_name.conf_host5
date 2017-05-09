@@ -1,0 +1,31 @@
+options {
+
+	directory "/usr/local/bind/var"; #存放域名的路径
+	pid-file "name.pid";
+	listen-on port 53 {any;};
+	allow-query {any;};
+
+
+};
+
+
+zone "cdn.com" in { # cdn.com 正向解析
+
+	type master;  #主域名服务器
+	file "cdn.com.zone";
+	allow-update {none;};
+
+};
+
+
+
+key "rndc-key" {
+	algorithm hmac-md5;
+	secret "B58ryku/d8mWsn8blv902A==";
+};
+
+controls {
+	inet 127.0.0.1 port 953
+		allow { 127.0.0.1; } keys { "rndc-key"; };
+};
+

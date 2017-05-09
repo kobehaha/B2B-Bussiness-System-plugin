@@ -1,22 +1,55 @@
-简单CDN建设与个人看法
+简单CDN架构实践
 ==========
+
+
+目录
+=================
+
+* [概要](#简单CDN架构实践)
+* [详情](#详情)
+	* [主机](#主机)
+	* [简单架构图](#简单架构图)
+	* [简单介绍](#简单介绍)	
+	* [关键步骤](#关键步骤)
+	* [配置文件与相关脚本](#配置文件与相关脚本)
+	* [相关下载](#相关下载)
+	* [思考](#思考)
+	* [个人想法](#个人想法)
+
+
+主机
+==========
+
+    host1 ---> squid1 squid2 
+    host2 ---> nginx
+               apache1 
+               apache2  
+    host3 ---> squid3 squid4
+    host5 ---> bind 
+    host4 ---> lvs 
 
 
 简单架构图
 ==========
 
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/cdn2.png)
 
-![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/cdn_nomal.png)
-
-
-
-4层负载均衡代理
+详情
 ==========
 
 
 
-squid1 + squid2[arp抑制] 
+简单介绍
 ==========
+
+![image](https://github.com/kobehaha/B2B-Bussiness-System-plugin/blob/master/image/cdn_show.png)
+
+
+关键步骤
+==========
+
+
+* squid1 + squid2[arp抑制]
 
 > 绑定vip [绑定本地还回地址]
 	
@@ -32,14 +65,11 @@ squid1 + squid2[arp抑制]
 	net.ipv4.conf.all.arp_ignore = 1
 	net.ipv4.conf.all.arp_announce = 2
 
-squid3 + squid4[正常配置]
-==========
+* squid3 + squid4[正常配置]
 
 
 
-
-lvs vip配置和dr代理配置
-==========
+* lvs vip配置和dr代理配置
 
 > 绑定vip [网卡上]
 	
@@ -57,7 +87,7 @@ lvs vip配置和dr代理配置
 
 > 系统转发配置
  
-	vim /etc/sysctl  添加
+    vim /etc/sysctl  添加
 	
 	net.ipv4.ip_forward = 0
 	net.ipv4.conf.all.send_redirects = 1
@@ -68,19 +98,17 @@ lvs vip配置和dr代理配置
 	
 > 查看系统代理情况[多刷新几次可以看到页面具体情况]
 	
-	ipvadm -Ln 
+	    ipvadm -Ln 
 	
 	
-> 代理查询[请求均匀分布]
+* 代理查询[请求均匀分布]
 
-	squid 1 tail -400f /usr/local/squid/var/logs/access.log
-	squid 2 tail -400f /usr/local/squid/var/logs/access.log
+      squid 1 tail -400f /usr/local/squid/var/logs/access.log
+	
+	    squid 2 tail -400f /usr/local/squid/var/logs/access.log
 	
 	
-
-
-bind DNS服务器搭建
-==========
+* bind DNS服务器搭建
 
 
 > 安全校验文件
@@ -116,8 +144,7 @@ bind DNS服务器搭建
 		Name:	www.cdn.com
 		Address: 10.211.55.6
 	
-
-优化
+思考
 ==========
 
 > gslb 全局负载均衡需要更多合理的设置
