@@ -149,7 +149,7 @@
 配置文件与相关脚本
 ==========
     
-   > 配置温江都在config文件夹下简单可以区分出差别
+   > 配置文件都在config文件夹下简单可以区分出差别
     
         ├── apache1.conf_host2
         ├── apache2.conf_host2
