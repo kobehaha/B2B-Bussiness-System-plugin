@@ -6,7 +6,7 @@ then
 	echo "consul has startted"
 
 else
-    sudo /usr/local/Cellar/consul/0.8.1/bin/consul agent  -server -ui -bootstrap-expect 1  -data-dir /usr/local/Cellar/consul/0.8.1/data  -bind 127.0.0.1 -client 127.0.0.1 -ui &
+    sudo /usr/local/Consul/consul agent  -server -ui -bootstrap-expect 1  -data-dir /usr/local/Consul/data  -bind 10.211.55.14 -client 10.211.55.14 -ui &
 fi
 
 
