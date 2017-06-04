@@ -17,11 +17,12 @@ local function update_upstreams()
     resp = cjson.decode(resp)
 
     local upstreams = {{ip = "127.0.0.1"} , port = 1111 }
-    for i, v in ipaires{resp} do
+    for i, v in iparirs {resp} do
         upstreams[i + 1] = { ip = v.Address, port = v.ServicePort}
     end
 
     ngx.shared.upstream_list:set("item_work_tomcat", cjson.encode(upstreams))
+
 end
 
 local function get_upstreams()
