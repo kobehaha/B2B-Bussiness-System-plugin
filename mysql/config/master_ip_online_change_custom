@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings FATAL => 'all';
+use MHA::DBHelper;
+
+use Getopt::Long;
+
+my (
+  $command,              $orig_master_is_new_slave, $orig_master_host,
+  $orig_master_ip,       $orig_master_port,         $orig_master_user,
+  $orig_master_password, $orig_master_ssh_user,     $new_master_host,
+  $new_master_ip,        $new_master_port,          $new_master_user,
+  $new_master_password,  $new_master_ssh_user,
+);
+GetOptions(
+  'command=s'                => \$command,
+  'orig_master_is_new_slave' => \$orig_master_is_new_slave,
+  'orig_master_host=s'       => \$orig_master_host,
+  'orig_master_ip=s'         => \$orig_master_ip,
+  'orig_master_port=i'       => \$orig_master_port,
+  'orig_master_user=s'       => \$orig_master_user,
+  'orig_master_password=s'   => \$orig_master_password,
+  'orig_master_ssh_user=s'   => \$orig_master_ssh_user,
+  'new_master_host=s'        => \$new_master_host,
+  'new_master_ip=s'          => \$new_master_ip,
+  'new_master_port=i'        => \$new_master_port,
+  'new_master_user=s'        => \$new_master_user,
+  'new_master_password=s'    => \$new_master_password,
+  'new_master_ssh_user=s'    => \$new_master_ssh_user,
+);
+
+exit &main();
+
+sub main() {
+  my $exit_code = 1;
+
+  my $orig_master_handler = new MHA::DBHelper();
+  $orig_master_handler->connect( $orig_master_ip, $orig_master_port,
+    $orig_master_user, $orig_master_password, 1 );
+  $orig_master_handler->enable_read_only();
+
+  if ( $orig_master_handler->is_read_only() ) {
+    print "-------------- original master is read only: ok.\n";
+  } else {
+    die "---------------- original master is read only: Failed!\n";
+  }
+  $orig_master_handler->disconnect();
+
+  $exit_code = 0;
+
+  exit $exit_code;
+}
